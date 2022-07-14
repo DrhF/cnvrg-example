@@ -1,0 +1,8 @@
+{
+    "name": "Area selection of road signs",
+    "hidden": true,
+    "public_requester_description":
+    {
+        "EN": "Performer is annotating road signs"
+    }
+}

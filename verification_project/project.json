@@ -1,0 +1,49 @@
+{
+    "assignments_issuing_type": "AUTOMATED",
+    "public_description": "Look at the image and decide whether or not the traffic signs are outlined correctly",
+    "public_instructions": "<b>Look at the image and answer the question:</b><br/>\nAre all traffic signs outlined correctly?<br/>\nIf they are, click Yes.<br/>\nIf they aren't, click No.<br/>\nFor example, the road signs here are outlined correctly, so the correct answer is Yes.",
+    "public_name": "Are the traffic signs outlined correctly?",
+    "task_spec": {
+        "input_spec": {
+            "assignment_id": {
+                "hidden": false,
+                "required": true,
+                "type": "string"
+            },
+            "image": {
+                "hidden": false,
+                "required": true,
+                "type": "url"
+            },
+            "selection": {
+                "hidden": false,
+                "required": true,
+                "type": "json"
+            }
+        },
+        "output_spec": {
+            "result": {
+                "allowed_values": [
+                    "OK",
+                    "BAD"
+                ],
+                "hidden": false,
+                "required": true,
+                "type": "string"
+            }
+        },
+        "view_spec": {
+            "config": "{\n    \"view\": {\n        \"items\": [\n            {\n                \"data\": {\n                    \"path\": \"selection\",\n                    \"default\": {\n                        \"path\": \"selection\",\n                        \"type\": \"data.input\"\n                    },\n                    \"type\": \"data.internal\"\n                },\n                \"image\": {\n                    \"path\": \"image\",\n                    \"type\": \"data.input\"\n                },\n                \"disabled\": true,\n                \"type\": \"field.image-annotation\"\n            },\n            {\n                \"data\": {\n                    \"path\": \"result\",\n                    \"type\": \"data.output\"\n                },\n                \"options\": [\n                    {\n                        \"value\": \"OK\",\n                        \"label\": \"Yes\"\n                    },\n                    {\n                        \"value\": \"BAD\",\n                        \"label\": \"No\"\n                    }\n                ],\n                \"label\": \"Are all traffic signs outlined correctly?\",\n                \"validation\": {\n                    \"type\": \"condition.required\"\n                },\n                \"type\": \"field.radio-group\"\n            }\n        ],\n        \"type\": \"view.list\"\n    },\n    \"plugins\": [\n        {\n            \"1\": {\n                \"data\": {\n                    \"path\": \"result\",\n                    \"type\": \"data.output\"\n                },\n                \"payload\": \"OK\",\n                \"type\": \"action.set\"\n            },\n            \"2\": {\n                \"data\": {\n                    \"path\": \"result\",\n                    \"type\": \"data.output\"\n                },\n                \"payload\": \"BAD\",\n                \"type\": \"action.set\"\n            },\n            \"type\": \"plugin.hotkeys\"\n        }\n    ]\n}",
+            "lock": {
+                "action.set": "1.0.0",
+                "condition.required": "1.0.0",
+                "core": "1.0.0",
+                "field.image-annotation": "1.0.0",
+                "field.radio-group": "1.0.0",
+                "plugin.hotkeys": "1.0.0",
+                "view.list": "1.0.0"
+            },
+            "type": "tb"
+        }
+    }
+}

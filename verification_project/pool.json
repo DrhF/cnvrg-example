@@ -1,0 +1,95 @@
+{
+    "assignment_max_duration_seconds": 600,
+    "defaults": {
+        "default_overlap_for_new_task_suites": 3
+    },
+    "filter": {
+        "and": [
+            {
+                "category": "profile",
+                "key": "languages",
+                "operator": "IN",
+                "value": "EN"
+            },
+            {
+                "category": "skill",
+                "key": "{detection_skill_id}",
+                "operator": "EQ",
+                "value": null
+            }
+        ]
+    },
+    "may_contain_adult_content": false,
+    "mixer_config": {
+        "force_last_assignment": true,
+        "golden_tasks_count": 0,
+        "real_tasks_count": 10,
+        "training_tasks_count": 0
+    },
+    "private_name": "Pool 1. Road sign verification",
+    "quality_control": {
+        "configs": [
+            {
+                "collector_config": {
+                    "parameters": {
+                        "answer_threshold": 2
+                    },
+                    "type": "MAJORITY_VOTE"
+                },
+                "rules": [
+                    {
+                        "action": {
+                            "parameters": {
+                                "duration": 10,
+                                "duration_unit": "DAYS",
+                                "private_comment": " Doesn't match the majority",
+                                "scope": "ALL_PROJECTS"
+                            },
+                            "type": "RESTRICTION_V2"
+                        },
+                        "conditions": [
+                            {
+                                "key": "total_answers_count",
+                                "operator": "GT",
+                                "value": 9
+                            },
+                            {
+                                "key": "correct_answers_rate",
+                                "operator": "LT",
+                                "value": 50
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "collector_config": {
+                    "parameters": {
+                        "answer_threshold": 2,
+                        "history_size": 10
+                    },
+                    "type": "MAJORITY_VOTE"
+                },
+                "rules": [
+                    {
+                        "action": {
+                            "parameters": {
+                                "from_field": "correct_answers_rate",
+                                "skill_id": "{verification_skill_id}"
+                            },
+                            "type": "SET_SKILL_FROM_OUTPUT_FIELD"
+                        },
+                        "conditions": [
+                            {
+                                "key": "total_answers_count",
+                                "operator": "GT",
+                                "value": 2
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "reward_per_assignment": 0.01
+}

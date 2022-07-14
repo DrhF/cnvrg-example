@@ -1,0 +1,31 @@
+{
+    "assignments_issuing_type": "AUTOMATED",
+    "public_description": "Find and outline all traffic signs with bounding boxes.",
+    "public_instructions": "<b>Outline each traffic sign with a separate bounding box(rectangle).</b>",
+    "public_name": "Outline all traffic signs with bounding boxes",
+    "task_spec": {
+        "input_spec": {
+            "image": {
+                "hidden": false,
+                "required": true,
+                "type": "url"
+            }
+        },
+        "output_spec": {
+            "result": {
+                "hidden": false,
+                "required": true,
+                "type": "json"
+            }
+        },
+        "view_spec": {
+            "config": "{\n    \"view\": {\n        \"data\": {\n            \"path\": \"result\",\n            \"type\": \"data.output\"\n        },\n        \"image\": {\n            \"path\": \"image\",\n            \"type\": \"data.input\"\n        },\n        \"shapes\": {\n            \"rectangle\": true\n        },\n        \"validation\": {\n            \"hint\": \"Please select an area\",\n            \"type\": \"condition.required\"\n        },\n        \"type\": \"field.image-annotation\"\n    }\n}",
+            "lock": {
+                "condition.required": "1.0.0",
+                "core": "1.0.0",
+                "field.image-annotation": "1.0.0"
+            },
+            "type": "tb"
+        }
+    }
+}
