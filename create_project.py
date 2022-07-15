@@ -24,6 +24,7 @@ if __name__ == '__main__':
 
     toloka_client = TolokaClient(toloka_token, 'PRODUCTION')
     project = create_project(toloka_client, args.project_config_path)
+    raise ValueError(project)
 
     logging.info(f'Project with id {project.id} is created.')
     with open(args.project_id_path, 'w') as project_id_file:
