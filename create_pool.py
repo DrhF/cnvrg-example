@@ -54,6 +54,8 @@ if __name__ == '__main__':
 
     toloka_token = os.environ[args.token_env]
 
+    assert os.path.exists(args.project_id_path), 'PROJECT FILE PATH DOES NOT EXIST'
+
     with open(args.project_id_path) as project_id_file:
         project_id = project_id_file.readline().strip()
 

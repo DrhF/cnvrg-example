@@ -31,8 +31,8 @@ if __name__ == '__main__':
     toloka_client = TolokaClient(toloka_token, 'PRODUCTION')
     skill = get_or_create_skill(toloka_client, args.skill_config_path)
     
-    raise ValueError(skill.id)
-    
     logging.info(f'Skill {skill.id} is ready for use.')
     with open(args.skill_id_path, 'w') as skill_id_file:
         skill_id_file.write(skill.id)
+
+    assert os.path.exists(args.skill_id_path), 'SKILL FILE PATH DOES NOT EXIST'
