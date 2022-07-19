@@ -1,0 +1,519 @@
+---
+flow: Toloka Road Signs Detection Annotation
+recurring: 
+tasks:
+- input: python3 create_project.py
+  params:
+  - key: token_env
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - toloka_token
+  - key: project_config_path
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "./detection_project/project.json"
+  - key: project_id_path
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - ./output/detection_project_id
+  computes:
+  - small
+  image: pytorch:22.02-py3
+  description: Create detection project
+  type: exec
+  git_commit: latest
+  git_branch: main
+  mount_folders: []
+  icon: 
+  output_dir: output
+  confirmation: false
+  standalone_mode: false
+  notify_on_error: false
+  notify_on_success: false
+  emails: []
+  objective: 
+  objective_goal: 
+  objective_function: min
+  max_jobs: -1
+  parallel_jobs: -1
+  algorithm: GridSearch
+  queue_slug: lrpx33badqyn39c8tewg
+  title: Create detection project
+  top: 180
+  left: 73
+  conditions: []
+  library: 
+- input: python3 create_project.py
+  params:
+  - key: token_env
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - toloka_token
+  - key: project_config_path
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "./verification_project/project.json"
+  - key: project_id_path
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - ./output/verification_project_id
+  computes:
+  - small
+  image: pytorch:22.02-py3
+  description: Create verification project
+  type: exec
+  git_commit: latest
+  git_branch: main
+  mount_folders: []
+  icon: 
+  output_dir: output
+  confirmation: false
+  standalone_mode: false
+  notify_on_error: false
+  notify_on_success: false
+  emails: []
+  objective: 
+  objective_goal: 
+  objective_function: min
+  max_jobs: -1
+  parallel_jobs: -1
+  algorithm: GridSearch
+  queue_slug: lrpx33badqyn39c8tewg
+  title: Create verification project
+  top: 500
+  left: 73
+  conditions: []
+  library: 
+- input: python3 get_or_create_skill.py
+  params:
+  - key: token_env
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - toloka_token
+  - key: skill_config_path
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "./detection_project/skill.json"
+  - key: skill_id_path
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - ./output/detection_skill_id
+  computes:
+  - small
+  image: pytorch:22.02-py3
+  description: Create detection skill
+  type: exec
+  git_commit: latest
+  git_branch: main
+  mount_folders: []
+  icon: 
+  output_dir: output
+  confirmation: false
+  standalone_mode: false
+  notify_on_error: false
+  notify_on_success: false
+  emails: []
+  objective: 
+  objective_goal: 
+  objective_function: min
+  max_jobs: -1
+  parallel_jobs: -1
+  algorithm: GridSearch
+  queue_slug: lrpx33badqyn39c8tewg
+  title: Create detection skill
+  top: 313
+  left: 99
+  conditions: []
+  library: 
+- input: python3 get_or_create_skill.py
+  params:
+  - key: token_env
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - toloka_token
+  - key: skill_config_path
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "./verification_project/skill.json"
+  - key: skill_id_path
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - ./output/verification_skill_id
+  computes:
+  - small
+  image: pytorch:22.02-py3
+  description: Create verification skill
+  type: exec
+  git_commit: latest
+  git_branch: main
+  mount_folders: []
+  icon: 
+  output_dir: output
+  confirmation: false
+  standalone_mode: false
+  notify_on_error: false
+  notify_on_success: false
+  emails: []
+  objective: 
+  objective_goal: 
+  objective_function: min
+  max_jobs: -1
+  parallel_jobs: -1
+  algorithm: GridSearch
+  queue_slug: lrpx33badqyn39c8tewg
+  title: Create verification skill
+  top: 627
+  left: 97
+  conditions: []
+  library: 
+- input: python3 create_pool.py
+  params:
+  - key: token_env
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - toloka_token
+  - key: project_id_path
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "/input/create_detection_project/output/detection_project_id"
+  - key: pool_config_path
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "./detection_project/pool.json"
+  - key: pool_id_path
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - ./output/detection_pool_id
+  - key: detection_skill_id
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "/input/create_detection_skill/output/detection_skill_id"
+  computes:
+  - small
+  image: pytorch:22.02-py3
+  description: Create detection pool
+  type: exec
+  git_commit: latest
+  git_branch: main
+  mount_folders: []
+  icon: 
+  output_dir: output
+  confirmation: false
+  standalone_mode: false
+  notify_on_error: false
+  notify_on_success: false
+  emails: []
+  objective: 
+  objective_goal: 
+  objective_function: min
+  max_jobs: -1
+  parallel_jobs: -1
+  algorithm: GridSearch
+  queue_slug: lrpx33badqyn39c8tewg
+  title: Create detection pool
+  top: 208
+  left: 405
+  conditions: []
+  library: 
+- input: python3 create_pool.py
+  params:
+  - key: token_env
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - toloka_token
+  - key: project_id_path
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "/input/create_verification_project/output/verification_project_id"
+  - key: pool_config_path
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "./verification_project/pool.json"
+  - key: pool_id_path
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - ./output/verification_pool_id
+  - key: detection_skill_id
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "/input/create_detection_skill/output/detection_skill_id"
+  - key: verification_skill_id
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "/input/create_verification_skill/output/verification_skill_id"
+  computes:
+  - small
+  image: pytorch:22.02-py3
+  description: Create verification pool
+  type: exec
+  git_commit: latest
+  git_branch: main
+  mount_folders: []
+  icon: 
+  output_dir: output
+  confirmation: false
+  standalone_mode: false
+  notify_on_error: false
+  notify_on_success: false
+  emails: []
+  objective: 
+  objective_goal: 
+  objective_function: min
+  max_jobs: -1
+  parallel_jobs: -1
+  algorithm: GridSearch
+  queue_slug: lrpx33badqyn39c8tewg
+  title: Create verification pool
+  top: 500
+  left: 502
+  conditions: []
+  library: 
+- input: python3  create_tasks_from_csv.py
+  params:
+  - key: token_env
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - toloka_token
+  - key: pool_id_path
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "/input/create_detection_pool/output/detection_pool_id"
+  - key: output_pool_id_path
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - ./output/detection_pool_uploaded_id
+  - key: tasks_csv
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "./detection_project/dataset.csv"
+  - key: open_pool
+    type: discrete
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - 'True'
+  computes:
+  - small
+  image: pytorch:22.02-py3
+  description: Upload tasks
+  type: exec
+  git_commit: latest
+  git_branch: main
+  mount_folders: []
+  icon: 
+  output_dir: output
+  confirmation: false
+  standalone_mode: false
+  notify_on_error: false
+  notify_on_success: false
+  emails: []
+  objective: 
+  objective_goal: 
+  objective_function: min
+  max_jobs: -1
+  parallel_jobs: -1
+  algorithm: GridSearch
+  queue_slug: lrpx33badqyn39c8tewg
+  title: Upload tasks
+  top: 216
+  left: 690
+  conditions: []
+  library: 
+- input: python3 detection_verification_pipeline.py
+  params:
+  - key: token_env
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - toloka_token
+  - key: detection_pool_id_path
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "/input/upload_tasks/output/detection_pool_uploaded_id"
+  - key: verification_pool_id_path
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "/input/create_verification_pool/output/verification_pool_id"
+  - key: verification_skill_id_path
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - "/input/create_verification_skill/output/verification_skill_id"
+  - key: output_pool_results
+    type: categorical
+    min: 0
+    max: 0
+    scale: linear
+    steps: 0
+    values:
+    - ./output/detection_pool_results.csv
+  computes:
+  - small
+  image: pytorch:22.02-py3
+  description: Detection-verification pipeline
+  type: exec
+  git_commit: latest
+  git_branch: main
+  mount_folders: []
+  icon: 
+  output_dir: output
+  confirmation: false
+  standalone_mode: false
+  notify_on_error: false
+  notify_on_success: false
+  emails: []
+  objective: 
+  objective_goal: 
+  objective_function: min
+  max_jobs: -1
+  parallel_jobs: -1
+  algorithm: GridSearch
+  queue_slug: lrpx33badqyn39c8tewg
+  title: Detection-verification pipeline
+  top: 369
+  left: 946
+  conditions: []
+  library: 
+relations:
+- from: Create detection project
+  to: Create detection pool
+- from: Create detection skill
+  to: Create detection pool
+- from: Create verification project
+  to: Create verification pool
+- from: Create verification skill
+  to: Create verification pool
+- from: Create detection pool
+  to: Upload tasks
+- from: Upload tasks
+  to: Detection-verification pipeline
+- from: Create verification pool
+  to: Detection-verification pipeline
+- from: Create detection skill
+  to: Create verification pool
+- from: Create verification skill
+  to: Detection-verification pipeline
