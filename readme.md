@@ -67,7 +67,7 @@ cnvrg.io is the world's most flexible end-to-end machine learning operating syst
 2. [Connect this repo](https://app.cnvrg.io/docs/core_concepts/projects.html#git-integration) with a project in cnvrg.io
 3. [Get an OAuth token](https://toloka.ai/docs/api/concepts/access.html#access__token?utm_source=github&utm_medium=site&utm_campaign=tolokakit) in Toloka
 4. [Create a secret](https://app.cnvrg.io/docs/core_concepts/projects.html#project-secrets) called `toloka_token` in cnvrg.io
-5. Run this project as [Flow](https://app.cnvrg.io/docs/core_concepts/flows.html#yaml-files) from [YAML config](traffic_signs_annotation.yaml) in cnvrg.io. The flow should look like this:
+5. Import this project's [Flow](https://app.cnvrg.io/docs/core_concepts/flows.html#yaml-files) from [YAML config](traffic_signs_annotation.yaml) in cnvrg.io. The flow should look like this:
 <table  align="center">
   <tr><td>
     <img src="./img/flow.png"
@@ -77,3 +77,5 @@ cnvrg.io is the world's most flexible end-to-end machine learning operating syst
     <b>Figure 3.</b> Project flow in cnvrg.io
   </td></tr>
 </table>
+6. Click on the 'Run Flow' button
+7. In a few minutes you will get annotated road signs
