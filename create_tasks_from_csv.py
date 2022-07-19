@@ -1,6 +1,5 @@
 import argparse
 import logging
-from multiprocessing import pool
 import os
 from enum import Enum
 from typing import List, Optional
@@ -104,8 +103,7 @@ if __name__ == '__main__':
     parser.add_argument('--tasks_csv', type=str, help='csv file with data for tasks')
     parser.add_argument('--control_csv', type=str, help='csv file with data for control tasks')
     parser.add_argument('--training_csv', type=str, help='csv file with data for training')
-    parser.add_argument('--open_pool', type=bool, default=False, # action="store_true",
-                        help='Whether to open the pool when tasks created')
+    parser.add_argument('--open_pool', type=bool, default=False, help='Whether to open the pool when tasks created')
     args = parser.parse_args()
 
     if not (args.tasks_csv or args.control_csv or args.training_csv):

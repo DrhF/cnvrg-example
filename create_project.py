@@ -28,5 +28,3 @@ if __name__ == '__main__':
     logging.info(f'Project with id {project.id} is created.')
     with open(args.project_id_path, 'w') as project_id_file:
         project_id_file.write(project.id)
-
-    assert os.path.exists(args.project_id_path), 'PROJECT FILE PATH DOES NOT EXIST'

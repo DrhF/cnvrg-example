@@ -105,6 +105,12 @@ def get_pipeline(toloka_token: str, detection_pool_id: str, verification_pool_id
     return pipeline
 
 
+def get_raw_results(toloka_token: str, pool_id: str) -> pd.DataFrame:
+    toloka_client = TolokaClient(toloka_token, 'PRODUCTION')
+
+    return toloka_client.get_assignments_df(pool_id)
+
+
 if __name__ == '__main__':
     # command line arguments
     parser = argparse.ArgumentParser(
@@ -117,8 +123,8 @@ if __name__ == '__main__':
                         required=True, help='Path to file with verification pool id')
     parser.add_argument('--verification_skill_id_path', type=str,
                         required=True, help='Path to file with verification skill id')
-    parser.add_argument('--output_pool_id_path', type=str, required=True,
-                        help='Path to store pool id with tasks created')
+    parser.add_argument('--output_pool_results', type=str, required=True,
+                        help='Path to store pool results')
 
     args = parser.parse_args()
 
@@ -138,5 +144,6 @@ if __name__ == '__main__':
     loop.run_until_complete(pipeline.run())
 
     logging.info(f'Pool {detection_pool_id} has finished')
-    with open(args.output_pool_id_path, 'w') as output_pool_id_file:
-        output_pool_id_file.write(detection_pool_id)
+
+    assignments = get_raw_results(toloka_token, detection_pool_id)
+    assignments.to_csv(args.output_pool_results, index=False)

@@ -6,6 +6,7 @@ from typing import List, Optional
 
 from toloka.client import TolokaClient, Pool
 
+
 def replace_config_args(json_config: str, configs: Optional[List[str]]) -> str:
     placeholder = None
     value = None
@@ -17,10 +18,10 @@ def replace_config_args(json_config: str, configs: Optional[List[str]]) -> str:
         else:
             if os.path.exists(arg):
                 with open(arg) as arg_file:
-                        value = arg_file.read().strip()
+                    value = arg_file.read().strip()
             else:
                 value = arg
-        
+
         if placeholder is not None and value is not None:
             json_config = json_config.replace(placeholder, value)
             placeholder = None
@@ -53,8 +54,6 @@ if __name__ == '__main__':
     args, config_replacements = parser.parse_known_args()
 
     toloka_token = os.environ[args.token_env]
-
-    assert os.path.exists(args.project_id_path), 'PROJECT FILE PATH DOES NOT EXIST'
 
     with open(args.project_id_path) as project_id_file:
         project_id = project_id_file.readline().strip()
