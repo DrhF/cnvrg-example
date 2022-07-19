@@ -77,5 +77,6 @@ cnvrg.io is the world's most flexible end-to-end machine learning operating syst
     <b>Figure 3.</b> Project flow in cnvrg.io
   </td></tr>
 </table>
+
 6. Click on the 'Run Flow' button
 7. In a few minutes you will get annotated road signs
